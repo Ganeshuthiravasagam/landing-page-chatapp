@@ -1,0 +1,448 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: Product, key: 50c664cf'
+            label: Text
+            name: 50c664cf
+            widget: string
+          - hint: 'Original text: Services, key: 560f747e'
+            label: Text
+            name: 560f747e
+            widget: string
+          - hint: 'Original text: Contact, key: -64104400'
+            label: Text
+            name: '-64104400'
+            widget: string
+          - hint: 'Original text: Try it Free, key: 2e820adc'
+            label: Text
+            name: 2e820adc
+            widget: string
+          - hint: 'Original text: Have your, key: 20059fcb'
+            label: Text
+            name: 20059fcb
+            widget: string
+          - hint: 'Original text: best chat, key: 49597c14'
+            label: Text
+            name: 49597c14
+            widget: string
+          - hint: 'Original text: Fast, easy & unlimited team chat., key: e69d99a'
+            label: Text
+            name: e69d99a
+            widget: string
+          - hint: 'Original text: Get a Demo, key: -6a68a174'
+            label: Text
+            name: '-6a68a174'
+            widget: string
+          - hint: 'Original text: Instant Team Chats, key: -4f1cb7a9'
+            label: Text
+            name: '-4f1cb7a9'
+            widget: string
+          - hint: >-
+              Original text: Lorem ipsum dolor sit amet, consectetuer adipiscing
+              elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+              natoque penatibus et magnis dis parturient montes, nascetur
+              ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+              pretium quis, sem. Nulla consequat massa., key: -2c3d2a62
+            label: Text
+            name: '-2c3d2a62'
+            widget: text
+          - hint: >-
+              Original text: Perfect Solution for Small Businesses, key:
+              13767b12
+            label: Text
+            name: 13767b12
+            widget: string
+          - hint: 'Original text: Pricing plans that fit like a glove., key: 7a139ea5'
+            label: Text
+            name: 7a139ea5
+            widget: string
+          - hint: 'Original text: 5,200 businesses , key: 567b3c8d'
+            label: Text
+            name: 567b3c8d
+            widget: string
+          - hint: 'Original text: use ChatApp and they rate it as , key: -402219a6'
+            label: Text
+            name: '-402219a6'
+            widget: string
+          - hint: 'Original text: 5-stars, key: 46ff1cc9'
+            label: Text
+            name: 46ff1cc9
+            widget: string
+          - hint: 'Original text: ., key: 2e'
+            label: Text
+            name: 2e
+            widget: string
+          - hint: >-
+              Original text: The last team chat you will ever need., key:
+              -46b9a65d
+            label: Text
+            name: '-46b9a65d'
+            widget: string
+          - hint: 'Original text: Help, key: 224361'
+            label: Text
+            name: '224361'
+            widget: string
+          - hint: 'Original text: Link 1, key: -78547655'
+            label: Text
+            name: '-78547655'
+            widget: string
+          - hint: 'Original text: Link 2, key: -78547654'
+            label: Text
+            name: '-78547654'
+            widget: string
+          - hint: 'Original text: Link 3, key: -78547653'
+            label: Text
+            name: '-78547653'
+            widget: string
+          - hint: 'Original text: Features, key: -d78b7a3'
+            label: Text
+            name: '-d78b7a3'
+            widget: string
+          - hint: 'Original text: Link 4, key: -78547652'
+            label: Text
+            name: '-78547652'
+            widget: string
+          - hint: 'Original text: Link 5, key: -78547651'
+            label: Text
+            name: '-78547651'
+            widget: string
+          - hint: 'Original text: Link 6, key: -78547650'
+            label: Text
+            name: '-78547650'
+            widget: string
+          - hint: 'Original text: Link 7, key: -7854764f'
+            label: Text
+            name: '-7854764f'
+            widget: string
+          - hint: 'Original text: Company, key: -64202ba3'
+            label: Text
+            name: '-64202ba3'
+            widget: string
+          - hint: 'Original text: Link 8, key: -7854764e'
+            label: Text
+            name: '-7854764e'
+            widget: string
+          - hint: 'Original text: Link 9, key: -7854764d'
+            label: Text
+            name: '-7854764d'
+            widget: string
+          - hint: 'Original text: Link 10, key: 6dc5abe5'
+            label: Text
+            name: 6dc5abe5
+            widget: string
+          - hint: 'Original text: Contact Us, key: 7f2746de'
+            label: Text
+            name: 7f2746de
+            widget: string
+          - hint: 'Original text: info@chatapp.com, key: 598c8d4a'
+            label: Text
+            name: 598c8d4a
+            widget: string
+          - hint: 'Original text: 1-800-200-300, key: 1a1e26a7'
+            label: Text
+            name: 1a1e26a7
+            widget: string
+          - hint: 'Original text: 3500 Deer Creek Rd, key: 20617f2a'
+            label: Text
+            name: 20617f2a
+            widget: string
+          - hint: 'Original text: Palo Alto, CA, key: 35934524'
+            label: Text
+            name: '35934524'
+            widget: string
+          - hint: 'Original text: © Copyright ChatApp Inc., key: 6a610b97'
+            label: Text
+            name: 6a610b97
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: #product, key: 2156ef6c'
+            label: Link
+            name: 2156ef6c
+            widget: string
+          - hint: 'Original link: #services, key: -686fc27f'
+            label: Link
+            name: '-686fc27f'
+            widget: string
+          - hint: 'Original link: #contact, key: 6c80469d'
+            label: Link
+            name: 6c80469d
+            widget: string
+          - hint: 'Original link: mailto:info@chatapp.com, key: 7f4b4952'
+            label: Link
+            name: 7f4b4952
+            widget: string
+          - hint: 'Original link: tel:1800200300, key: 5b6af467'
+            label: Link
+            name: 5b6af467
+            widget: string
+          - hint: >-
+              Original link: https://goo.gl/maps/v1jXu4mi41Uv9zFG7, key:
+              4b5a5d0f
+            label: Link
+            name: 4b5a5d0f
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: '-2e7149b7'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-40c7a92c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 63a628e3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-58862af3'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-46879215'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2e633236'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
